@@ -21,6 +21,7 @@ import FormSuccess from "../form-success";
 import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
+import { Loader2Icon } from "lucide-react";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -47,8 +48,7 @@ const LoginForm = () => {
     startTransition(() => {
       login(values).then((data) => {
         setError(data?.error);
-        // TODO: Add when we add 2FA
-        // setSuccess(data?.success);
+        setSuccess(data?.success);
       });
     });
   };
@@ -103,7 +103,8 @@ const LoginForm = () => {
           <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button type="submit" className="w-full" disabled={isPending}>
-            Login
+            {!isPending && "Login"}
+            {isPending && <Loader2Icon className="animate-spin" />}
           </Button>
         </form>
       </Form>
