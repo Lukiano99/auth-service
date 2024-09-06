@@ -2,6 +2,7 @@ import { auth, signOut } from "@/auth";
 
 const SettingsPage = async () => {
   const session = await auth();
+
   return (
     <div>
       {JSON.stringify(session)}
@@ -11,7 +12,9 @@ const SettingsPage = async () => {
           await signOut({ redirectTo: "/auth/login" });
         }}
       >
-        <button type="submit">Sign out</button>
+        <button type="submit" className="rounded-lg bg-primary text-accent p-3">
+          Sign out
+        </button>
       </form>
     </div>
   );
