@@ -20,6 +20,7 @@ import FormError from "../form-error";
 import FormSuccess from "../form-success";
 import { register } from "@/actions/register";
 import { useState, useTransition } from "react";
+import { Loader2Icon } from "lucide-react";
 
 const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>();
@@ -114,8 +115,13 @@ const RegisterForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button type="submit" className="w-full" disabled={isPending}>
-            Create an account
+          <Button
+            type="submit"
+            className="w-full transition-all"
+            disabled={isPending}
+          >
+            {!isPending && "Create an account"}
+            {isPending && <Loader2Icon className="animate-spin" />}
           </Button>
         </form>
       </Form>
