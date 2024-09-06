@@ -1,14 +1,21 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 const Social = () => {
+  const onClick = (provider: "google" | "github") => {
+    signIn(provider, {
+      callbackUrl: DEFAULT_LOGIN_REDIRECT,
+    });
+  };
   return (
     <div className="flex items-center w-full gap-x-2">
       <Button
         variant={"outline"}
-        onClick={() => {}}
+        onClick={() => onClick("google")}
         className="w-full drop-shadow-sm"
         size={"lg"}
       >
@@ -24,7 +31,7 @@ const Social = () => {
       </Button>
       <Button
         variant={"outline"}
-        onClick={() => {}}
+        onClick={() => onClick("github")}
         className="w-full drop-shadow-sm"
         size={"lg"}
       >
