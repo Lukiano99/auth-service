@@ -18,7 +18,7 @@ const SettingsPage = async () => {
       </form>
       <h1>
         This is protected route. You will see this just in case you are
-        authenticated
+        authenticated!
       </h1>
     </div>
   );
