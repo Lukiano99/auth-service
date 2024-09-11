@@ -4,11 +4,13 @@ import { newVerification } from "@/actions/new-verification";
 import CardWrapper from "@/components/auth/card-wapper";
 import { LoaderIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import FormError from "@/components/form-error";
 import FormSuccess from "@/components/form-success";
 
 const NewVerificationForm = () => {
+  const hasSubmitted = useRef(false);
+
   const [error, setError] = useState<string | undefined>();
   const [success, setSuccess] = useState<string | undefined>();
 
@@ -19,6 +21,8 @@ const NewVerificationForm = () => {
   const onSubmit = useCallback(() => {
     // for development mode, because of react strict
     if (success || error) return;
+    if (hasSubmitted.current) return;
+    hasSubmitted.current = true;
 
     if (!token) {
       setError("Missing token!");
