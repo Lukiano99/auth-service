@@ -37,18 +37,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const existingUser = await getUserById(user.id as string);
 
       // Prevent sign in without email verification
-      if (!existingUser?.emailVerified) {
-        return false;
-      }
-
-      // TODO: Add 2FA check
+      if (!existingUser?.emailVerified) return false;
 
       if (existingUser.isTwoFactorEnabled) {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
           existingUser.id
         );
 
-        console.log({ twoFactorConfirmation });
         if (!twoFactorConfirmation) return false;
 
         // Delete 2FA confirmation for next sign in
