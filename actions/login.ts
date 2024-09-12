@@ -1,5 +1,6 @@
 "use server";
 
+import bcrypt from "bcryptjs";
 import { signIn } from "@/auth";
 import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
@@ -43,7 +44,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     return { success: "Confirmation email sent!" };
   }
 
-  // TODO: Ovde treba da se ispita da li je ispravna sifra!
   if (existingUser.isTwoFactorEnabled && existingUser.email) {
     if (code) {
       // TODO: Verify code
@@ -85,6 +85,12 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         },
       });
     } else {
+      const isPasswordCorrect = await bcrypt.compare(
+        password,
+        existingUser.password
+      );
+      if (!isPasswordCorrect) return { error: "Invalid credentials!" };
+
       const twoFactorToken = await generateTwoFactorToken(existingUser.email);
       await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
       return { twoFactor: true };
