@@ -1,21 +1,19 @@
-import { auth, signOut } from "@/auth";
+"use client";
 
-const SettingsPage = async () => {
-  const session = await auth();
+import { logout } from "@/actions/logout";
+import { Button } from "@/components/ui/button";
+// import { useCurrentUser } from "@/hooks/use-current-user";
 
+const SettingsPage = () => {
+  // const session = useCurrentUser();
+  const onClick = () => {
+    logout();
+  };
   return (
-    <div>
-      {JSON.stringify(session)}
-      <form
-        action={async () => {
-          "use server";
-          await signOut({ redirectTo: "/auth/login" });
-        }}
-      >
-        <button type="submit" className="rounded-lg bg-primary text-accent p-3">
-          Sign out
-        </button>
-      </form>
+    <div className="bg-accent p-10 rounded-xl">
+      <Button onClick={onClick} type="submit" className="w-fit">
+        Sign out
+      </Button>
       <h1>
         This is protected route. You will see this just in case you are
         authenticated!
