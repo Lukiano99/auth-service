@@ -30,7 +30,8 @@ const LoginForm = () => {
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider!"
-      : "";
+      : undefined;
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -49,9 +50,9 @@ const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
-
+    console.log({ callbackUrl });
     startTransition(() => {
-      login(values)
+      login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
             form.reset();
