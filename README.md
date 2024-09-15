@@ -1,7 +1,3 @@
-Evo predloga za `.readme` fajl za tvoj projekat **next-auth-service**:
-
----
-
 # Next-Auth Service
 
 This repository is a custom implementation of **NextAuth.js v5**, focused on providing a complete authentication system with email verification, OAuth, and 2FA support. The project is inspired by [Antonio Erdeljac's work](https://github.com/AntonioErdeljac).
@@ -98,7 +94,3 @@ Feel free to clone the repo, test the features locally, and submit PRs for impro
 ## License
 
 This project is open-source and available under the MIT License.
-
----
-
-Da li ti odgovara ovakav format?
