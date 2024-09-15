@@ -1,40 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Evo predloga za `.readme` fajl za tvoj projekat **next-auth-service**:
 
-## Getting Started
+---
 
-First, run the development server:
+# Next-Auth Service
+
+This repository is a custom implementation of **NextAuth.js v5**, focused on providing a complete authentication system with email verification, OAuth, and 2FA support. The project is inspired by [Antonio Erdeljac's work](https://github.com/AntonioErdeljac).
+
+**Live documentation for NextAuth.js v5 can be found here**: [authjs.dev](https://authjs.dev/).
+
+## Features
+
+- **Email & Password Authentication**: Users can sign up and log in with email and password.
+- **OAuth Support**: Sign in with external providers like Google and GitHub (configurable).
+- **Email Verification**: Integrated email verification using the [Resend](https://resend.com/) service (local testing only).
+- **Password Reset**: Implemented password reset functionality (testable locally).
+- **Two-Factor Authentication (2FA)**: Added 2FA for an extra layer of security (local testing available).
+- **Protected Routes**: Only authenticated users can access certain parts of the application.
+- **Account Management**: Allows users to update their profile information.
+
+## Setup
+
+### Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/next-auth-service.git
+cd next-auth-service
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Environment Variables
 
-## Learn More
+To enable email verification and OAuth, you need to configure the following environment variables in your `.env` file:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+# Database connection
+DATABASE_URL=your_postgresql_connection_string
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# NextAuth.js settings
+NEXTAUTH_SECRET=your_nextauth_secret
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Resend API (for local email testing)
+RESEND_API_KEY=your_resend_api_key
 
-## Deploy on Vercel
+# OAuth credentials
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Local Email Testing (Resend)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To test email verification locally:
+1. Sign up on [Resend](https://resend.com/).
+2. Add your Resend API key to `.env`.
+3. Emails can only be sent to the email address associated with your Resend account unless you purchase a domain.
 
-## Things that matter to me and are important for this project
+### Run the application
 
-You have a structured approach to organizing code based on whether it's used in client-side or server-side components. You prefer to keep client-side logic, such as fetching and displaying data, encapsulated within custom hooks in the Hooks folder. For server-side logic, you use asynchronous functions, which are stored in the lib folder, ensuring a clear separation of concerns and enhancing code maintainability. This demonstrates your attention to detail and efficient use of hooks and async functions in Next.js development.
+```bash
+pnpm dev
+```
+
+### Database Setup
+
+1. Create a PostgreSQL database (e.g., using Neon).
+2. Run migrations:
+
+```bash
+pnpm prisma migrate dev
+```
+
+## Project Structure
+
+- **Custom Hooks**: Reusable hooks for fetching session data and other client-side operations.
+- **Server Components**: Optimized components for server-side logic and session management.
+- **Client Components**: Components that handle user interactions and UI updates.
+- **Lib Folder**: Contains async functions used in server components (e.g., authentication handling).
+- **TailwindCSS & shadcn/ui**: For UI styling and component management.
+- **Prisma ORM**: Handles database communication with PostgreSQL.
+
+## Highlights
+
+- **Server Actions**: Early adoption of server actions in Next.js for optimized data fetching.
+- **Session Handling**: Sessions are managed differently in server and client components. Check the `lib` folder for a clean and organized implementation.
+- **Account Update**: Users can update their account information through the profile settings.
+
+## How to Contribute
+
+Feel free to clone the repo, test the features locally, and submit PRs for improvements. Check the project structure for reference, especially the integration of server actions, custom hooks, and session management.
+
+## License
+
+This project is open-source and available under the MIT License.
+
+---
+
+Da li ti odgovara ovakav format?
