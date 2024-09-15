@@ -50,7 +50,6 @@ const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
-    console.log({ callbackUrl });
     startTransition(() => {
       login(values, callbackUrl)
         .then((data) => {

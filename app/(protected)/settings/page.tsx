@@ -63,7 +63,6 @@ const SettingsPage = () => {
           }
           if (data.success) {
             update();
-            console.log({ data });
 
             setSuccess(data.success);
           }
