@@ -6,6 +6,15 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { UserRole } from "@prisma/client";
 
 const AdminPage = () => {
+  const onApiRouteClick = () => {
+    fetch("/api/admin").then((response) => {
+      if (response.ok) {
+        console.log("OKAY");
+      } else {
+        console.log("FORBIDEN");
+      }
+    });
+  };
   return (
     <Card className="md:w-[600px] w-[450px]">
       <CardHeader>
@@ -16,9 +25,15 @@ const AdminPage = () => {
           <FormSuccess message="You are allowed to see this content!" />
         </RoleGate>
         <div className="flex flex-row items-center justify-between border shadow-sm rounded-lg p-3">
-          <p className="text-sm font-medium">Admin-only Server Action</p>
+          <p className="text-sm font-medium">Admin-only API Route</p>
+          <Button onClick={onApiRouteClick} size={"sm"}>
+            Click to test
+          </Button>
         </div>
-        <Button>Click to test</Button>
+        <div className="flex flex-row items-center justify-between border shadow-sm rounded-lg p-3">
+          <p className="text-sm font-medium">Admin-only Server Action</p>
+          <Button size={"sm"}>Click to test</Button>
+        </div>
       </CardContent>
     </Card>
   );
