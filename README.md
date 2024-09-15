@@ -34,3 +34,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Things that matter to me and are important for this project
+
+You have a structured approach to organizing code based on whether it's used in client-side or server-side components. You prefer to keep client-side logic, such as fetching and displaying data, encapsulated within custom hooks in the Hooks folder. For server-side logic, you use asynchronous functions, which are stored in the lib folder, ensuring a clear separation of concerns and enhancing code maintainability. This demonstrates your attention to detail and efficient use of hooks and async functions in Next.js development.
