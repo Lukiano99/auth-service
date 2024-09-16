@@ -1,5 +1,6 @@
 "use client";
 import UserButton from "@/components/auth/user-button";
+import { ThemeToggleButton } from "@/components/toggle-theme-button";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,7 +32,10 @@ const Navbar = () => {
           <Link href="/settings">Settings</Link>
         </Button>
       </div>
-      <UserButton />
+      <div className="space-x-4">
+        <ThemeToggleButton />
+        <UserButton />
+      </div>
     </nav>
   );
 };
