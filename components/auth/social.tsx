@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { signIn } from "next-auth/react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
@@ -15,6 +16,7 @@ const Social = () => {
       callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
   };
+  const { resolvedTheme } = useTheme();
   return (
     <div className="flex items-center w-full gap-x-2">
       <Button
@@ -41,7 +43,9 @@ const Social = () => {
       >
         <Image
           src={
-            "https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000"
+            resolvedTheme === "light"
+              ? "https://img.icons8.com/?size=100&id=3tC9EQumUAuq&format=png&color=000000"
+              : "https://img.icons8.com/?size=100&id=12599&format=png&color=FFFFFF"
           }
           width={60}
           height={60}

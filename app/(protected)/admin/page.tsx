@@ -47,7 +47,11 @@ const AdminPage = () => {
         </RoleGate>
         <div className="flex flex-row items-center justify-between border shadow-sm rounded-lg p-3">
           <p className="text-sm font-medium">Admin-only Server Action</p>
-          <Button onClick={onServerActionClick} size={"sm"}>
+          <Button
+            onClick={onServerActionClick}
+            size={"sm"}
+            variant={"secondary"}
+          >
             {!isPendingServer && "Click to test"}
             {isPendingServer && (
               <Loader2Icon size={18} className="animate-spin" />
@@ -56,7 +60,7 @@ const AdminPage = () => {
         </div>
         <div className="flex flex-row items-center justify-between border shadow-sm rounded-lg p-3">
           <p className="text-sm font-medium">Admin-only API Route</p>
-          <Button onClick={onApiRouteClick} size={"sm"}>
+          <Button onClick={onApiRouteClick} size={"sm"} variant={"secondary"}>
             {!isPendingClient && "Click to test"}
             {isPendingClient && (
               <Loader2Icon size={18} className="animate-spin" />
