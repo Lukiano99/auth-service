@@ -23,6 +23,7 @@ import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { Loader2Icon } from "lucide-react";
 import Link from "next/link";
+import TwoFactorCodeInput from "./two-factor-code-input";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -87,9 +88,9 @@ const LoginForm = () => {
                   <FormItem>
                     <FormLabel>Two Factor Code</FormLabel>
                     <FormControl>
-                      <Input
+                      <TwoFactorCodeInput
                         {...field}
-                        placeholder="For example: 123456"
+                        placeholder="123456"
                         disabled={isPending}
                       />
                     </FormControl>
