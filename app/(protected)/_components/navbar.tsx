@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link href="/settings">Settings</Link>
         </Button>
       </div>
-      <div className="space-x-4 flex items-center">
+      <div className="space-x-2 flex items-center">
         <ThemeToggleButton />
         <UserButton />
       </div>
