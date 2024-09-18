@@ -33,6 +33,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Switch } from "@/components/ui/switch";
 import DeleteAccountButton from "@/components/auth/delete-account-button";
+import { Separator } from "@/components/ui/separator";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -218,6 +219,7 @@ const SettingsPage = () => {
             </Button>
           </form>
         </Form>
+        <Separator />
         <div className="flex flex-col rounded-lg space-y-4 border border-destructive p-3 shadow-sm">
           <p className="text-destructive font-medium">Danger zone</p>
           <div className="flex flex-row items-center justify-between ">
@@ -227,17 +229,13 @@ const SettingsPage = () => {
                 Say goodbye to our platform
               </p>
             </div>
-            {/* <Button
-              size={"responsive"}
-              variant={"destructive"}
-              onClick={onClickDeleteAccount}
-            >
-              Delete account
-            </Button> */}
-            <DeleteAccountButton>
-              <Button size={"responsive"} variant={"destructive"}>
+            <DeleteAccountButton asChild>
+              <Button className="md:flex " variant={"destructive"}>
                 Delete account
               </Button>
+              {/* <Button className="flex" variant={"destructive"} size={"icon"}>
+                <Trash2Icon size={18} strokeWidth={1.2} />
+              </Button> */}
             </DeleteAccountButton>
           </div>
         </div>
