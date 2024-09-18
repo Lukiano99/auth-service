@@ -32,6 +32,8 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Switch } from "@/components/ui/switch";
+import { deleteAccount } from "@/actions/delete-account";
+import { toast } from "sonner";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -45,10 +47,10 @@ const SettingsPage = () => {
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
-      password: undefined,
-      newPassword: undefined,
       name: user?.name || undefined,
       email: user?.email || undefined,
+      password: undefined,
+      newPassword: undefined,
       role: user?.role || undefined,
       isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
     },
@@ -71,12 +73,28 @@ const SettingsPage = () => {
     });
   };
 
+  const onClickDeleteAccount = () => {
+    console.log("Uslo");
+    deleteAccount()
+      .then((data) => {
+        if (data.success) {
+          toast.success(data.success);
+        }
+        if (data.error) {
+          toast.error(data.error);
+        }
+      })
+      .catch((e) => {
+        toast.error(e);
+      });
+  };
+
   return (
     <Card className="md:w-[600px] w-full">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">⚙️ Settings</p>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         <Form {...form}>
           <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-4">
@@ -217,6 +235,24 @@ const SettingsPage = () => {
             </Button>
           </form>
         </Form>
+        <div className="flex flex-col rounded-lg space-y-4 border border-destructive p-3 shadow-sm">
+          <p className="text-destructive font-medium">Danger zone</p>
+          <div className="flex flex-row items-center justify-between ">
+            <div className="flex flex-col gap-1">
+              <p>Remove data</p>
+              <p className="text-sm text-muted-foreground">
+                Say goodbye to our platform
+              </p>
+            </div>
+            <Button
+              size={"responsive"}
+              variant={"destructive"}
+              onClick={onClickDeleteAccount}
+            >
+              Delete account
+            </Button>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
