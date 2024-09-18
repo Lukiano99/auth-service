@@ -32,7 +32,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Switch } from "@/components/ui/switch";
-import { deleteAccount } from "@/actions/delete-account";
+import DeleteAccountButton from "@/components/auth/delete-account-button";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -70,10 +70,6 @@ const SettingsPage = () => {
         })
         .catch(() => setError("Something went wrong!"));
     });
-  };
-
-  const onClickDeleteAccount = () => {
-    deleteAccount();
   };
 
   return (
@@ -231,13 +227,18 @@ const SettingsPage = () => {
                 Say goodbye to our platform
               </p>
             </div>
-            <Button
+            {/* <Button
               size={"responsive"}
               variant={"destructive"}
               onClick={onClickDeleteAccount}
             >
               Delete account
-            </Button>
+            </Button> */}
+            <DeleteAccountButton>
+              <Button size={"responsive"} variant={"destructive"}>
+                Delete account
+              </Button>
+            </DeleteAccountButton>
           </div>
         </div>
       </CardContent>
