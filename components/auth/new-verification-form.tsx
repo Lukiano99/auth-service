@@ -1,7 +1,7 @@
 "use client";
 
 import { newVerification } from "@/actions/new-verification";
-import CardWrapper from "@/components/auth/card-wapper";
+import CardWrapper from "@/components/auth/card-wrapper";
 import { LoaderIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";

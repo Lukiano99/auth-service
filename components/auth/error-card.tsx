@@ -1,5 +1,5 @@
 import { TriangleAlertIcon } from "lucide-react";
-import CardWrapper from "./card-wapper";
+import CardWrapper from "./card-wrapper";
 
 const ErrorCard = () => {
   return (
