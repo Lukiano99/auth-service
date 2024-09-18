@@ -49,6 +49,24 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 GITHUB_CLIENT_ID=your_github_client_id
 GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
+## Progressive Web App (PWA) Support
+
+This project now includes **PWA (Progressive Web App)** functionality, allowing the app to be installed and function similarly to a native application on mobile and desktop devices. The PWA implementation is currently in testing, but it is functional at this stage.
+
+### Key Features:
+- Users can install the app directly from their browser, creating a more app-like experience.
+- The app supports **offline usage** thanks to the integration of a **service worker**.
+- The app opens in a **standalone mode**, meaning it runs without the browser UI for a more native feel.
+- Basic caching and offline capabilities are included to improve performance.
+
+### How to Test:
+1. Open the application in a compatible browser (such as Chrome or Edge).
+2. You should see an option to "Install" the app on your device, or go to the browser menu and select "Add to Home Screen" (on mobile).
+3. Once installed, the app can be launched directly from your home screen or desktop, providing a native-like experience.
+
+I’m continuing to test and refine this feature, but it’s currently working as expected. Feedback is welcome!
+
+
 
 ### Local Email Testing (Resend)
 
