@@ -33,7 +33,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Switch } from "@/components/ui/switch";
 import { deleteAccount } from "@/actions/delete-account";
-import { toast } from "sonner";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -74,19 +73,7 @@ const SettingsPage = () => {
   };
 
   const onClickDeleteAccount = () => {
-    console.log("Uslo");
-    deleteAccount()
-      .then((data) => {
-        if (data.success) {
-          toast.success(data.success);
-        }
-        if (data.error) {
-          toast.error(data.error);
-        }
-      })
-      .catch((e) => {
-        toast.error(e);
-      });
+    deleteAccount();
   };
 
   return (

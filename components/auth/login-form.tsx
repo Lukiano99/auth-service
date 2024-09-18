@@ -54,13 +54,14 @@ const LoginForm = () => {
     startTransition(() => {
       login(values, callbackUrl)
         .then((data) => {
+          console.log({ data });
           if (data?.error) {
             form.reset();
             setError(data.error);
           }
           if (data?.success) {
             form.reset();
-            setError(data.error);
+            setSuccess(data.success);
           }
           if (data?.twoFactor) {
             setShowTwoFactor(true);

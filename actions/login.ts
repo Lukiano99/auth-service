@@ -30,8 +30,11 @@ export const login = async (
 
   const existingUser = await getUserByEmail(email);
 
-  if (!existingUser || !existingUser.email || !existingUser.password) {
+  if (!existingUser || !existingUser.email) {
     return { error: "Email does not exist!" };
+  }
+  if (!existingUser.password) {
+    return { error: "Email already in use with different provider!" };
   }
 
   if (!existingUser.emailVerified) {
@@ -43,8 +46,7 @@ export const login = async (
       verificationToken.email,
       verificationToken.token
     );
-
-    return { success: "Confirmation email sent!" };
+    return { success: "Confirmation email sent again!" };
   }
 
   if (existingUser.isTwoFactorEnabled && existingUser.email) {
